@@ -114,3 +114,14 @@ function signOut() {
       $(".data").css("display", "none");
     });
   }
+
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+    apiKey: "AIzaSyAdb0pE8Ux_e-quvD02ORA7pWuqdTd3Qt4",
+    authDomain: "resave-b3783.firebaseapp.com",
+    projectId: "resave-b3783",
+    storageBucket: "resave-b3783.appspot.com",
+    messagingSenderId: "30739395015",
+    appId: "1:30739395015:web:d00c9604654f471b90a9e2",
+    measurementId: "G-RB3LLNRMT8"
+  };
