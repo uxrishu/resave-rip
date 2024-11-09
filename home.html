@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resource Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./style/style.css">
+  </head>
+  <body class="bg-gray-100 p-6">
+    <div class="container mx-auto grid gap-6 md:grid-cols-3 lg:grid-cols-3">
+      <!-- Add Resource Form -->
+      <div class="bg-white p-6 rounded-lg shadow-md col-span-1">
+        <h2 class="text-xl font-semibold mb-4">Add Resource</h2>
+        <p class="text-gray-600 text-sm mb-6">
+          Add your resource by adding link to it. The basic information will
+          automatically get fetched.
+        </p>
+        <form class="space-y-4">
+          <input
+            type="text"
+            placeholder="Name of the resource"
+            class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
+          />
+          <input
+            type="url"
+            placeholder="Website URL"
+            class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
+          />
+          <select
+            class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-indigo-500"
+          >
+            <option disabled selected>Select Category</option>
+            <option value="design">Design</option>
+            <option value="development">Development</option>
+            <option value="ai-tools">AI Tools</option>
+            <option value="marketing">Marketing</option>
+            <option value="content-creation">Content Creation</option>
+            <option value="productivity">Productivity</option>
+            <!-- Add categories as options here -->
+          </select>
+          <button
+            type="submit"
+            class="w-full py-2 bg-black text-white rounded-md hover:bg-gray-800"
+          >
+            Save
+          </button>
+        </form>
+      </div>
+      <!-- Resources List -->
+      <div class="bg-white p-6 rounded-lg shadow-md col-span-1 md:col-span-2">
+        <h2 class="text-xl font-semibold mb-4">Resources</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Example Resource Card -->
+          <div class="flex items-center">
+            <img
+              src="https://via.placeholder.com/40"
+              alt="Resource Icon"
+              class="w-10 h-10 rounded-full mr-4"
+            />
+            <div>
+              <h3 class="font-semibold">Dribbble</h3>
+              <p class="text-gray-500 text-sm">
+                Discover the world's top designers
+              </p>
+            </div>
+          </div>
+          <!-- Repeat for each resource -->
+
+          <!-- Example Resource Card -->
+          <div class="flex items-center">
+            <img
+              src="https://via.placeholder.com/40"
+              alt="Resource Icon"
+              class="w-10 h-10 rounded-full mr-4"
+            />
+            <div>
+              <h3 class="font-semibold">Dribbble</h3>
+              <p class="text-gray-500 text-sm">
+                Discover the world's top designers
+              </p>
+            </div>
+          </div>
+
+          <!-- Example Resource Card -->
+          <div class="flex items-center">
+            <img
+              src="https://via.placeholder.com/40"
+              alt="Resource Icon"
+              class="w-10 h-10 rounded-full mr-4"
+            />
+            <div>
+              <h3 class="font-semibold">Dribbble</h3>
+              <p class="text-gray-500 text-sm">
+                Discover the world's top designers
+              </p>
+            </div>
+          </div>
+
+          <!-- Example Resource Card -->
+          <div class="flex items-center">
+            <img
+              src="https://via.placeholder.com/40"
+              alt="Resource Icon"
+              class="w-10 h-10 rounded-full mr-4"
+            />
+            <div>
+              <h3 class="font-semibold">Dribbble</h3>
+              <p class="text-gray-500 text-sm">
+                Discover the world's top designers
+              </p>
+            </div>
+          </div>
+
+          <!-- Example Resource Card -->
+          <div class="flex items-center">
+            <img
+              src="https://via.placeholder.com/40"
+              alt="Resource Icon"
+              class="w-10 h-10 rounded-full mr-4"
+            />
+            <div>
+              <h3 class="font-semibold">Dribbble</h3>
+              <p class="text-gray-500 text-sm">
+                Discover the world's top designers
+              </p>
+            </div>
+          </div>
+          <!-- Add more resources as shown in the example -->
+        </div>
+      </div>
+      <!-- Profile Status -->
+      <div class="bg-white p-6 rounded-lg shadow-md col-span-1">
+        <h2 class="text-xl font-semibold mb-2">
+          Profile Status: Public/Private
+        </h2>
+        <p class="text-gray-600 text-sm mb-6">
+          Your current profile is public, which means your resources can be seen
+          by anyone easily.
+        </p>
+        <!-- Toggle Switch -->
+              <div class="button r" id="button-2">
+                <input type="checkbox" class="checkbox" />
+                <div class="knobs"></div>
+                <div class="layer"></div>
+              </div>
+        <p class="text-blue-500 underline">resave.com/uxrishu</p>
+      </div>
+    </div>
+  </body>
+</html>
