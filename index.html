@@ -1,91 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome to Resave</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="./style/style.css">
-    <meta
-      name="google-signin-client_id"
-      content="30739395015-jv0dptik1l1h55q1tpinimv6tia3a89g.apps.googleusercontent.com.apps.googleusercontent.com"
-    />
-  </head>
-  <body class="bg-white flex items-center justify-center h-screen">
-    <div class="text-center space-y-6">
-      <!-- Welcome Text -->
-      <h1 class="text-4xl font-bold text-gray-900">Welcome to Resave</h1>
-      <p class="text-gray-600">
-        Collect and store all your resources in one place.<br />Safe and Secure
-        from everyone.
-      </p>
-
-      <!-- Google Sign-in Button -->
-      <script src="https://apis.google.com/js/platform.js" async defer></script>
-      <button
-        class="flex items-center space-x-2 px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 mx-auto"
-      >
-        <img
-          src="./res/google-g-2015 1.svg"
-          alt="Google Logo"
-          class="w-5 h-5"
-        />
-        <span class="alert alert-primary">Sign with Google</span>
-        <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div>
-        <div class="data">
-          <p>Name</p>
-          <p id="name" class="alert alert-success"></p>
-          <p>Profile Pic</p>
-          <img id="image" class="rounded-circle" width="100" height="100" />
-          <p>Email</p>
-          <p id="email"></p>
-          <button type="button" class="btn btn-danger" onclick="signOut();">
-            Sign Out
-          </button>
-        </div> -->
-      </button>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Authentication</title>
+    <style>
+        #userInfo {
+            display: none;
+        }
+        #signOutBtn {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Sign-in Button -->
+    <button id="googleSignInBtn">Sign in with Google</button>
+    <button id="signOutBtn">Sign Out</button>
+    
+    <!-- User Info Display -->
+    <div id="userInfo">
+        <img id="profilePic" alt="Profile Picture" width="100">
+        <p>Name: <span id="userName"></span></p>
+        <p>Email: <span id="userEmail"></span></p>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="./script.js"></script>
-  </body>
+    <!-- Firebase SDKs -->
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+    apiKey: "AIzaSyD_gstFvT7EGpKMXO3vUfp27WODYFounKo",
+    authDomain: "login-example-913ae.firebaseapp.com",
+    projectId: "login-example-913ae",
+    storageBucket: "login-example-913ae.firebasestorage.app",
+    messagingSenderId: "525186149136",
+    appId: "1:525186149136:web:0d0b5c91248bdaf3e4d395"
+  };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+
+        // Function to handle Google Sign-In
+        async function signInWithGoogle() {
+            try {
+                const result = await signInWithPopup(auth, provider);
+                const user = result.user;
+                console.log("User signed in:", user);
+                displayUserInfo(user);
+            } catch (error) {
+                console.error("Error signing in:", error.message);
+                alert("Error signing in: " + error.message);
+            }
+        }
+
+        // Function to handle Sign-Out
+        async function signOutUser() {
+            try {
+                await signOut(auth);
+                console.log("User signed out");
+                alert("Signed out successfully!");
+                hideUserInfo();
+            } catch (error) {
+                console.error("Error signing out:", error.message);
+            }
+        }
+
+        // Function to display user information
+        function displayUserInfo(user) {
+            document.getElementById("userInfo").style.display = 'block';
+            document.getElementById("profilePic").src = user.photoURL;
+            document.getElementById("userName").textContent = user.displayName;
+            document.getElementById("userEmail").textContent = user.email;
+
+            document.getElementById("googleSignInBtn").style.display = 'none';
+            document.getElementById("signOutBtn").style.display = 'block';
+        }
+
+        // Function to hide user information
+        function hideUserInfo() {
+            document.getElementById("userInfo").style.display = 'none';
+            document.getElementById("signOutBtn").style.display = 'none';
+            document.getElementById("googleSignInBtn").style.display = 'block';
+        }
+
+        // Listen for authentication state changes
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                displayUserInfo(user);
+            } else {
+                hideUserInfo();
+            }
+        });
+
+        // Attach event listeners to buttons
+        document.getElementById("googleSignInBtn").onclick = signInWithGoogle;
+        document.getElementById("signOutBtn").onclick = signOutUser;
+    </script>
+</body>
 </html>
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="google-signin-client_id"
-      content="30739395015-jv0dptik1l1h55q1tpinimv6tia3a89g.apps.googleusercontent.com.apps.googleusercontent.com"
-    />
-    <title>OAuth with Google</title>
-    <link rel="stylesheet" href="./style/style.css">
-  </head>
-  <body>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <h2 class="alert alert-primary">Sign In With Google Using JavaScript</h2>
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-    <div class="data">
-      <p>Name</p>
-      <p id="name" class="alert alert-success"></p>
-      <p>Profile Pic</p>
-      <img id="image" class="rounded-circle" width="100" height="100" />
-      <p>Email</p>
-      <p id="email"></p>
-      <button type="button" class="btn btn-danger" onclick="signOut();">
-        Sign Out
-      </button>
-    </div>
-
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-
-    <script src="./script.js"></script>
-  </body>
-</html> -->
