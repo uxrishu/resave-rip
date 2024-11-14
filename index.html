@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,4 +30,109 @@
     <!-- Custom Script -->
     <script type="module" src="./script.js"></script>
   </body>
+=======
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Authentication</title>
+    <style>
+        #userInfo {
+            display: none;
+        }
+        #signOutBtn {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Sign-in Button -->
+    <button id="googleSignInBtn">Sign in with Google</button>
+    <button id="signOutBtn">Sign Out</button>
+    
+    <!-- User Info Display -->
+    <div id="userInfo">
+        <img id="profilePic" alt="Profile Picture" width="100">
+        <p>Name: <span id="userName"></span></p>
+        <p>Email: <span id="userEmail"></span></p>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+    apiKey: "AIzaSyD_gstFvT7EGpKMXO3vUfp27WODYFounKo",
+    authDomain: "login-example-913ae.firebaseapp.com",
+    projectId: "login-example-913ae",
+    storageBucket: "login-example-913ae.firebasestorage.app",
+    messagingSenderId: "525186149136",
+    appId: "1:525186149136:web:0d0b5c91248bdaf3e4d395"
+  };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+
+        // Function to handle Google Sign-In
+        async function signInWithGoogle() {
+            try {
+                const result = await signInWithPopup(auth, provider);
+                const user = result.user;
+                console.log("User signed in:", user);
+                displayUserInfo(user);
+            } catch (error) {
+                console.error("Error signing in:", error.message);
+                alert("Error signing in: " + error.message);
+            }
+        }
+
+        // Function to handle Sign-Out
+        async function signOutUser() {
+            try {
+                await signOut(auth);
+                console.log("User signed out");
+                alert("Signed out successfully!");
+                hideUserInfo();
+            } catch (error) {
+                console.error("Error signing out:", error.message);
+            }
+        }
+
+        // Function to display user information
+        function displayUserInfo(user) {
+            document.getElementById("userInfo").style.display = 'block';
+            document.getElementById("profilePic").src = user.photoURL;
+            document.getElementById("userName").textContent = user.displayName;
+            document.getElementById("userEmail").textContent = user.email;
+
+            document.getElementById("googleSignInBtn").style.display = 'none';
+            document.getElementById("signOutBtn").style.display = 'block';
+        }
+
+        // Function to hide user information
+        function hideUserInfo() {
+            document.getElementById("userInfo").style.display = 'none';
+            document.getElementById("signOutBtn").style.display = 'none';
+            document.getElementById("googleSignInBtn").style.display = 'block';
+        }
+
+        // Listen for authentication state changes
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                displayUserInfo(user);
+            } else {
+                hideUserInfo();
+            }
+        });
+
+        // Attach event listeners to buttons
+        document.getElementById("googleSignInBtn").onclick = signInWithGoogle;
+        document.getElementById("signOutBtn").onclick = signOutUser;
+    </script>
+</body>
+>>>>>>> 3acc751eb4d00026cb9e3b3612270708dd8a3580
 </html>
