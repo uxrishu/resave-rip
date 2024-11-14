@@ -4,88 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Welcome to Resave</title>
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="./style/style.css">
-    <meta
-      name="google-signin-client_id"
-      content="30739395015-jv0dptik1l1h55q1tpinimv6tia3a89g.apps.googleusercontent.com.apps.googleusercontent.com"
-    />
+    <link rel="stylesheet" href="./style/style.css" />
+
+    <!-- Google Sign-In Client ID -->
+    <meta name="google-signin-client_id" content="30739395015-jv0dptik1l1h55q1tpinimv6tia3a89g.apps.googleusercontent.com" />
   </head>
+
   <body class="bg-white flex items-center justify-center h-screen">
     <div class="text-center space-y-6">
-      <!-- Welcome Text -->
       <h1 class="text-4xl font-bold text-gray-900">Welcome to Resave</h1>
       <p class="text-gray-600">
         Collect and store all your resources in one place.<br />Safe and Secure
         from everyone.
       </p>
-
-      <!-- Google Sign-in Button -->
-      <script src="https://apis.google.com/js/platform.js" async defer></script>
-      <button
-        class="flex items-center space-x-2 px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 mx-auto"
-      >
-        <img
-          src="./res/google-g-2015 1.svg"
-          alt="Google Logo"
-          class="w-5 h-5"
-        />
-        <span class="alert alert-primary">Sign with Google</span>
-        <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div>
-        <div class="data">
-          <p>Name</p>
-          <p id="name" class="alert alert-success"></p>
-          <p>Profile Pic</p>
-          <img id="image" class="rounded-circle" width="100" height="100" />
-          <p>Email</p>
-          <p id="email"></p>
-          <button type="button" class="btn btn-danger" onclick="signOut();">
-            Sign Out
-          </button>
-        </div> -->
+      <button id="googleSignInButton" class="flex items-center space-x-2 px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 mx-auto">
+        <img src="./res/google-g-2015 1.svg" alt="Google Logo" class="w-5 h-5" />
+        <span>Sign in with Google</span>
       </button>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="./script.js"></script>
+    <!-- Custom Script -->
+    <script type="module" src="./script.js"></script>
   </body>
 </html>
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="google-signin-client_id"
-      content="30739395015-jv0dptik1l1h55q1tpinimv6tia3a89g.apps.googleusercontent.com.apps.googleusercontent.com"
-    />
-    <title>OAuth with Google</title>
-    <link rel="stylesheet" href="./style/style.css">
-  </head>
-  <body>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <h2 class="alert alert-primary">Sign In With Google Using JavaScript</h2>
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-    <div class="data">
-      <p>Name</p>
-      <p id="name" class="alert alert-success"></p>
-      <p>Profile Pic</p>
-      <img id="image" class="rounded-circle" width="100" height="100" />
-      <p>Email</p>
-      <p id="email"></p>
-      <button type="button" class="btn btn-danger" onclick="signOut();">
-        Sign Out
-      </button>
-    </div>
-
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-
-    <script src="./script.js"></script>
-  </body>
-</html> -->

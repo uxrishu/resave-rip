@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="./style/style.css">
   </head>
   <body class="bg-gray-100 p-6">
+     <!-- Welcome Message and Logout Button -->
+  <div id="welcomeMessage" class="mb-6 text-center">
+    <h2 class="text-2xl font-semibold">Welcome, <span id="userName"></span>!</h2>
+    <button id="logoutButton" class="mt-4 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">Logout</button>
+  </div>
     <div class="container mx-auto grid gap-6 md:grid-cols-3 lg:grid-cols-3">
       <!-- Add Resource Form -->
       <div class="bg-white p-6 rounded-lg shadow-md col-span-1">
@@ -147,5 +152,7 @@
         <p class="text-blue-500 underline">resave.com/uxrishu</p>
       </div>
     </div>
+      <!-- Custom Script -->
+  <script src="./home.js"></script>
   </body>
 </html>
